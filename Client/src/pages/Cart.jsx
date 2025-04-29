@@ -14,6 +14,7 @@ const Cart = () => {
     getCartTotal,
   } = useAppContext();
 
+  
   const [showAddress, setShowAddress] = useState(false);
   const [cartArray, setCartArray] = useState([]);
   const [addresses, setAddresses] = useState(dummyAddress);
