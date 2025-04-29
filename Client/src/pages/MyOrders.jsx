@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/AppContext';
-import { assets, dummyOrders } from '../assets/assets';
+import {  dummyOrders } from '../assets/assets';
 
 const MyOrders = () => {
 
@@ -44,7 +44,7 @@ const MyOrders = () => {
                                             <p>{item.product.category}</p>
                                         </div>
                                 </div>
-                                <div className='text-primary text-lg font-medium'>
+                                <div className='flex flex-col justify-center md:ml-8  mb-4  md:mb-0'>
                                     <p>Quantity: {item.quantity || "1"}</p>
                                     <p>Status: {order.status}</p>
                                     <p>Date: {new Date(order.createdAt).toLocaleDateString()}</p>
