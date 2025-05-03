@@ -3,11 +3,14 @@ import express from 'express';
 import cors from 'cors';
 import connectDB from './configs/db.js';
 import 'dotenv/config';
+import userRouter from './routes/userRoute.js'; // Import the user router
+
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 await connectDB();
-
 
 const allowedOrigins = [
     'http://localhost:5173'
@@ -18,10 +21,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({origin: allowedOrigins, credentials: true}));
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-}
-);
+app.get('/', (req, res) => {res.send('Hello World!')});
+app.use('/api/user', userRouter); // Register the user router
 
 
 app.listen(PORT,()=>{
