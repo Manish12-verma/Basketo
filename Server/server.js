@@ -4,7 +4,7 @@ import cors from 'cors';
 import connectDB from './configs/db.js';
 import 'dotenv/config';
 import userRouter from './routes/userRoute.js'; // Import the user router
-
+import sellerRouter from './routes/sellerRoute.js'; // Import the seller router
 
 
 const app = express();
@@ -23,7 +23,7 @@ app.use(cors({origin: allowedOrigins, credentials: true}));
 
 app.get('/', (req, res) => {res.send('Hello World!')});
 app.use('/api/user', userRouter); // Register the user router
-
+app.use('/api/seller', sellerRouter); // Register the seller router
 
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`)
