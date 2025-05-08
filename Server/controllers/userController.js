@@ -39,3 +39,38 @@ export const registerUser = async (req, res) => {
            res.status(500).json({success:false,message:err.message})
        }    
 }
+//Login User : /api/user/login
+
+export const loginUser = async (req, res) => {
+    try {
+          const {email,password} = req.body;
+          if(!email || !password){
+            return res.json({success:false,message:"EMail and password are required"})
+          }
+
+          const user = await User.findOne({email});
+          if(!user){
+            return res.json({success:false,message:"Invalid email or password"})
+          }
+
+          const isMatch = await bcrypt.compare(password, user.password);
+
+          if(!isMatch){
+            return res.json({success:false,message:"Invalid email or password"})
+          }
+          const token = jwt.sign({id:user._id}, process.env.JWT_SECRET, {expiresIn:'7d'}); 
+
+          res.cookie('token',token,{
+              httpOnly:true,  
+              secure:process.env.NODE_ENV === 'production',  //use secure cookies in production 
+              sameSite:process.env.NODE_ENV === 'production' ?"none":'strict',  //prevent CSRF attacks
+              maxAge:7*24*60*60*1000  //7 days -> cookie expiration time
+          })
+
+          return res.status(201).json({success:true,message:"User registered successfully",user:{email:user.email,name:user.name}})
+    
+    } catch (error) {
+        console.log(err.message)
+        res.status(500).json({success:false,message:err.message})
+    }
+}
