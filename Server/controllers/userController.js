@@ -67,10 +67,38 @@ export const loginUser = async (req, res) => {
               maxAge:7*24*60*60*1000  //7 days -> cookie expiration time
           })
 
-          return res.status(201).json({success:true,message:"User registered successfully",user:{email:user.email,name:user.name}})
-    
-    } catch (error) {
+          return res.status(200).json({success:true,message:"User registered successfully",user:{email:user.email,name:user.name}})
+         
+    } catch (err) {
         console.log(err.message)
         res.status(500).json({success:false,message:err.message})
     }
 }
+
+//check Auth : /api/user/is-auth
+export const isAuth = async (req, res) => {
+  try{
+    const userId = req.userId; 
+     const user = await User.findById(userId).select("-password");
+
+     return res.status(200).json({success:true,user});
+  }catch(err){
+     console.log(err.message)
+     res.status(500).json({success:false,message:err.message})
+  }
+}
+
+//Logout User : /api/user/logout
+export const logoutUser = async (req, res) => {
+     try {
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+        });
+        return res.status(200).json({success:true,message:"User logged out successfully"})
+     } catch (err) {
+        console.log(err.message)
+        res.status(500).json({success:false,message:err.message})
+     }
+ }

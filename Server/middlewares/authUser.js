@@ -10,7 +10,7 @@ const authUser = async (req, res, next) => {
     try{
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       if(decoded.id){
-        req.body.userId = decoded.id; // Attach userId to the request body 
+        req.userId = decoded.id; // Attach userId to the request body 
       }else{
         return res.status(401).json({success:false,message:"Unauthorized"})
       }
