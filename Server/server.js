@@ -6,6 +6,7 @@ import 'dotenv/config';
 import userRouter from './routes/userRoute.js'; // Import the user router
 import sellerRouter from './routes/sellerRoute.js'; // Import the seller router
 import connectCloudinary from './configs/cloudinary.js'; // Import the Cloudinary connection
+import productRouter from './routes/productRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,9 +23,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({origin: allowedOrigins, credentials: true}));
 
+
 app.get('/', (req, res) => {res.send('Hello World!')});
 app.use('/api/user', userRouter); // Register the user router
 app.use('/api/seller', sellerRouter); // Register the seller router
+app.use('/api/product', productRouter); 
 
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`)
