@@ -9,6 +9,7 @@ import connectCloudinary from './configs/cloudinary.js'; // Import the Cloudinar
 import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import addressRouter from './routes/addressRoute.js';
+import orderRouter from './routes/orderRoute.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +33,7 @@ app.use('/api/seller', sellerRouter); // Register the seller router
 app.use('/api/product', productRouter); 
 app.use('/api/cart', cartRouter);  
 app.use('/api/address', addressRouter); // Register the address router
+app.use('/api/order', orderRouter); // Register the seller router
 
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`)
