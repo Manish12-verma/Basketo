@@ -1,12 +1,12 @@
 import express from 'express';
 import { upload } from '../configs/multer.js';
 import authSeller from '../middlewares/authSeller.js';
-import { addProduct, productById, productList } from '../controllers/productController.js';
+import { addProduct, productById, productList,changeStock } from '../controllers/productController.js';
 import e from 'express';
 
 const productRouter = express.Router();
 
-productRouter.get('/add',upload.array([images]) ,authSeller,addProduct)
+productRouter.get('/add',upload.array(["images"]) ,authSeller,addProduct)
 productRouter.get('/list',productList)
 productRouter.get('/id',productById)
 productRouter.post('/stock',authSeller,changeStock)
