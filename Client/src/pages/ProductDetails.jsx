@@ -5,14 +5,13 @@ import { assets } from '../assets/assets';
 import ProductCard from '../components/ProductCard';
 
 const ProductDetails = () => {
-     
 
       const [thumbnail, setThumbnail] = useState(null);
       const [relatedProducts, setRelatedProducts] = useState([]);
       const {products,navigate,currency,addToCart} = useAppContext();
       const {id} = useParams();
       const product = products.find((item) => item._id === id);
-
+      
       useEffect(()=>{
         if(products.length > 0 && product) {
             let productsCopy = products.slice();
