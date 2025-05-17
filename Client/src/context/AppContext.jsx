@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { dummyProducts } from "../assets/assets";
 import toast from "react-hot-toast";
 import axios from "axios";
 
@@ -35,7 +34,16 @@ export const AppContextProvider = ({ children }) => {
 
   //fetch All products
   const fetchProducts = async () => {
-    setProducts(dummyProducts);
+      try {
+           const {data} = await axios.get('/api/product/list');
+            if(data.success){
+              setProducts(data.products);
+            }else{
+               toast.error(data.message);
+            }
+      } catch (err) {
+            toast.error(err.message);
+      }
   };
 
   //add product to cart
@@ -117,6 +125,7 @@ export const AppContextProvider = ({ children }) => {
     getCartCount,
     getCartTotal,
     axios,
+    fetchProducts
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
