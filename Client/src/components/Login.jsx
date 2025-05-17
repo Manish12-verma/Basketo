@@ -8,18 +8,24 @@ const Login = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {setShowUserLogin,setUser} = useAppContext();
+    const {setShowUserLogin,setUser,axios,navigate} = useAppContext();
 
     const handleSubmit = async (e) => {
-          e.preventDefault();  //stop form from refreshing the page
-        setUser({
-            
-            email: "manish12@gmail.com",
-            name: "Manish",
-
-        }); 
-        setShowUserLogin(false);
-        toast.success("Login Successful")
+          try {
+            e.preventDefault();
+            const {data} = await axios.post(`/api/user/${state}`,{name,email,password}) 
+            if(data.success){
+                navigate('/')
+                setUser(data.user);
+                setShowUserLogin(false);  //hides the login form
+            }else{
+                toast.error(data.message);
+            }
+          } catch (error) {
+                  toast.error(error.message);
+          }
+          //stop form from refreshing the page
+        
     }
 
 
