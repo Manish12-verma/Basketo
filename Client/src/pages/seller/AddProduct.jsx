@@ -29,7 +29,7 @@ const AddProduct = () => {
 
              const formData = new FormData();
              formData.append('productData',JSON.stringify(productData));
-             for (let i = 0; i < files.length; i++) {
+             for(let i = 0; i < files.length; i++) {
                 formData.append('images',files[i]);
              }
                 const {data} = await axios.post('/api/product/add',formData);
@@ -46,6 +46,8 @@ const AddProduct = () => {
                     toast.error(data.message);
                 }
       }catch(err){
+        // console.error(err);
+        //   toast.error(err?.response?.data?.message || err.message);
           toast.error(err.message);
       }         
   }
