@@ -14,7 +14,7 @@ const authUser = async (req, res, next) => {
       }else{
         return res.status(401).json({success:false,message:"Unauthorized"})
       }
-
+  
       next(); // Call the next middleware or route handler
     }catch(err){
        

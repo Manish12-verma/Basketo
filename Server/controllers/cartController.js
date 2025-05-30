@@ -11,8 +11,7 @@ export const updateCart = async (req, res) => {
             }
             res.json({ success: true, message: "Cart updated successfully" });
 
-     } catch (err) {
-           cpnsole.log(err.message);
+     } catch (err) {  
            res.status(500).json({ success: false, message: err.message });
      }
 }

@@ -33,7 +33,7 @@ app.use('/api/seller', sellerRouter); // Register the seller router
 app.use('/api/product', productRouter); 
 app.use('/api/cart', cartRouter);  
 app.use('/api/address', addressRouter); // Register the address router
-app.use('/api/order', orderRouter); // Register the seller router
+app.use('/api/order', orderRouter); // Register the order router
 
 app.listen(PORT,()=>{
     console.log(`Server is running on http://localhost:${PORT}`)

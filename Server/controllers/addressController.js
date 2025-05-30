@@ -1,3 +1,4 @@
+
 import Address from "../models/Address.js";
 
 //Add address : api/address/add
@@ -20,12 +21,12 @@ export const addAddress = async (req, res) => {
 //Get address : api/address/get
 export const getAddress = async (req, res) => {
       try {
-        const {userId} = req.body;
+        const userId = req.userId; 
         const addresses = await Address.find({userId});
 
         return res.json({ success: true, message: "Address fetched successfully", addresses });
       } catch (err) {
-           console.log(err.message);
+              console.log(err.message);
               res.status(500).json({ success: false, message: err.message });   
       }
 }
