@@ -2,20 +2,22 @@
 
 Basketo is a modern e-commerce web application for buyers and sellers, built with the MERN stack. It features user authentication, product management, cart, orders, and a seller dashboard.
 
----
 
 ##  Live Demo
 
 [View Basketo Live](https://basketo-frontend.vercel.app/)
 
----
 
 ##  Screenshots
 
 <!-- Add your screenshots below -->
-[Basketo](./Client/public/basketo.png)
-[Seller Dashboard](./Client/public/seller_dashboard.png)
----
+Basketo 
+
+![Basketo](./Client/public/basketo.png)
+
+Seller Dashboard
+
+![Seller Dashboard](./Client/public/seller_dashboard.png)
 
 ##  Technologies Used
 
@@ -35,7 +37,6 @@ Basketo is a modern e-commerce web application for buyers and sellers, built wit
 - Multer (file uploads)
 - CORS, dotenv, cookie-parser, bcrypt
 
----
 
 ##  Installation
 
