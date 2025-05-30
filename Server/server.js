@@ -18,7 +18,8 @@ await connectDB();
 await connectCloudinary(); // Connect to Cloudinary
 
 const allowedOrigins = [
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'https://basketo-frontend.vercel.app'
 ]
 
 // Middleware to parse JSON bodies
