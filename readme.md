@@ -1,7 +1,7 @@
 #  Basketo
 
-Basketo is a modern e-commerce web application for buyers and sellers, built with the MERN stack. It features user authentication, product management, cart, orders, and a seller dashboard.
 
+Welcome to Basketo, a powerful and sleek online grocery delivery platform built using the MERN stack (MongoDB, Express.js, React.js, Node.js). This full-featured app allows users to seamlessly browse groceries, add items to their cart & place orders— all in a few clicks! Plus, sellers can easily manage inventory through a dedicated Admin Panel.
 
 ##  Live Demo
 
