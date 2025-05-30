@@ -15,6 +15,7 @@ const Cart = () => {
     getCartTotal,
     axios,
     user,
+    setCartItems
   } = useAppContext();
 
   const [showAddress, setShowAddress] = useState(false);
@@ -34,12 +35,6 @@ const Cart = () => {
     }
     setCartArray(tempArray);
   };
-
-  useEffect(() => {
-    if (products.length > 0 && cartItems) {
-      getCart();
-    }
-  }, [products, cartItems]);
 
   // Get Address
   const getUserAddresses = async () => {
@@ -62,8 +57,43 @@ const Cart = () => {
   }; 
   
   // Place Order
-  const placeOrder = async () => {};
+  const placeOrder = async () => {
+     try {
+         if(!selectedAddress){
+            return toast.error("Please select a delivery address");
+         }
+          if(cartArray.length === 0){
+            return toast.error("Your cart is empty");
+          }
 
+         if(paymentOption === "COD"){
+             const { data } = await axios.post('/api/order/cod', {
+                userId: user._id,
+                items: cartArray.map(item => ({product: item._id, quantity: item.quantity})),
+                address: selectedAddress,
+             });
+
+             if(data.success){
+                toast.success(data.message);
+                setCartItems({});
+                navigate("/my-orders");
+                console.log("Order placed successfully:", data);
+             }else{
+                toast.error(data.message);
+             }
+         }
+     } catch (error) {
+        console.log("error in placing order:",error.message);
+        toast.error(error.message);
+     }
+  };
+
+  
+  useEffect(() => {
+    if (products.length > 0 && cartItems) {
+      getCart();
+    }
+  }, [products, cartItems]);
 
   useEffect(() => {
     if(user){
