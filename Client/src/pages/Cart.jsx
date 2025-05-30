@@ -292,7 +292,7 @@ const Cart = () => {
         >
           {paymentOption === "COD" ? "Place Order" : "Pay Now"}
         </button>
-      </div>
+      </div> 
     </div>
   ) : null;
 };
